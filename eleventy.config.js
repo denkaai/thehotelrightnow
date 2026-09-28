@@ -1,5 +1,5 @@
 export default function(eleventyConfig) {
-  eleventyConfig.addPassthroughCopy("src/assets");
+  eleventyConfig.addPassthroughCopy("src/assets", { filter: ["**/*", "!**/.gitkeep"] });
   return {
     dir: {
       input: "src",
