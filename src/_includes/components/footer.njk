@@ -1,0 +1,44 @@
+<footer class="site-footer">
+  <div class="container footer-container">
+    <div class="footer-brand">
+      <h2 class="footer-logo">{{ site.displayName }}</h2>
+      {% if site.address != 'TBD' %}
+        <p class="footer-address">{{ site.address }}</p>
+      {% endif %}
+      <div class="footer-contact">
+        {% if site.phone != 'TBD' %}
+          <p><a href="tel:{{ site.phone | replace(' ', '') }}">{{ site.phone }}</a></p>
+        {% endif %}
+        {% if site.email != 'TBD' %}
+          <p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+        {% endif %}
+        {% if site.whatsapp != 'TBD' %}
+          <p><a href="https://wa.me/{{ site.whatsapp | replace('+', '') | replace(' ', '') }}">WhatsApp</a></p>
+        {% endif %}
+      </div>
+    </div>
+    
+    <div class="footer-nav-col">
+      <nav aria-label="Footer Navigation">
+        <ul class="footer-nav">
+          <li><a href="/rooms/">Rooms &amp; Suites</a></li>
+          <li><a href="/dining/">Dining</a></li>
+          <li><a href="/events/">Events</a></li>
+          <li><a href="/gallery/">Gallery</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+    
+    <div class="footer-social">
+      {% for platform, url in site.socials %}
+        {% if url != 'TBD' %}
+          <a href="{{ url }}" target="_blank" rel="noopener noreferrer" class="social-link">{{ platform | capitalize }}</a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p>&copy; {{ site.displayName }}. All rights reserved.</p>
+  </div>
+</footer>

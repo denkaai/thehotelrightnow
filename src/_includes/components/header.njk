@@ -1,0 +1,23 @@
+<header class="site-header" id="site-header">
+  <div class="container header-container">
+    <a href="/" class="brand-logo">{{ site.displayName }}</a>
+    
+    <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu">
+      <span class="hamburger"></span>
+    </button>
+
+    <nav class="main-nav" id="mobile-menu" aria-label="Main Navigation">
+      <ul class="nav-list">
+        <li><a href="/">Home</a></li>
+        <li><a href="/rooms/">Rooms &amp; Suites</a></li>
+        <li><a href="/dining/">Dining</a></li>
+        <li><a href="/events/">Events</a></li>
+        <li><a href="/gallery/">Gallery</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+      <div class="header-cta">
+        <a href="{% if site.bookingUrl != 'TBD' %}{{ site.bookingUrl }}{% else %}/contact/#enquiry{% endif %}" class="btn btn-primary">Book Now</a>
+      </div>
+    </nav>
+  </div>
+</header>
