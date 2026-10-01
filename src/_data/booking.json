@@ -1,0 +1,9 @@
+{
+  "bookingMethod": "CONTENT REQUIRED",
+  "bookingUrl": "CONTENT REQUIRED",
+  "bookingPhone": "CONTENT REQUIRED",
+  "bookingEmail": "CONTENT REQUIRED",
+  "whatsapp": "CONTENT REQUIRED",
+  "enquiryForm": "CONTENT REQUIRED",
+  "externalBookingEngine": "CONTENT REQUIRED"
+}

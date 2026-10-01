@@ -1,0 +1,133 @@
+---
+layout: layouts/base.njk
+title: Book Your Stay
+heroImage: /assets/img/hero/hero-1-2400.webp
+description: Plan your stay at Hotel Right Now.
+---
+
+{% include "components/page-hero.njk" %}
+
+<section class="section-padding" style="background:var(--ivory);">
+  <div class="container container-narrow">
+    
+    <div class="booking-flow-container">
+      <!-- Progress Bar -->
+      <div class="booking-progress" role="navigation" aria-label="Booking progress">
+        <div class="progress-step is-active" id="progress-1">01 Stay</div>
+        <div class="progress-step" id="progress-2">02 Details</div>
+        <div class="progress-step" id="progress-3">03 Review</div>
+      </div>
+
+      <!-- Booking Form -->
+      <form id="booking-form" class="booking-form" novalidate>
+        
+        <!-- STEP 1: STAY DETAILS -->
+        <div class="booking-step is-active" id="step-1">
+          <h2 class="step-title">Stay Details</h2>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="checkin">Check-in Date <span aria-hidden="true">*</span></label>
+              <input type="date" id="checkin" name="checkin" required class="form-input" aria-required="true">
+              <div class="form-error" id="error-checkin" role="alert" aria-live="polite"></div>
+            </div>
+            <div class="form-group">
+              <label for="checkout">Check-out Date <span aria-hidden="true">*</span></label>
+              <input type="date" id="checkout" name="checkout" required class="form-input" aria-required="true">
+              <div class="form-error" id="error-checkout" role="alert" aria-live="polite"></div>
+            </div>
+            <div class="form-group">
+              <label for="guests">Number of Guests <span aria-hidden="true">*</span></label>
+              <input type="number" id="guests" name="guests" min="1" max="10" value="2" required class="form-input" aria-required="true">
+              <div class="form-error" id="error-guests" role="alert" aria-live="polite"></div>
+            </div>
+            <div class="form-group">
+              <label for="room">Room Preference</label>
+              <div class="select-wrapper">
+                <select id="room" name="room" class="form-input">
+                  <option value="Any available room">Any available room</option>
+                  {% for room in rooms.rooms %}
+                    {% set roomName = room.name %}
+                    {% if roomName == "CONTENT REQUIRED" %}{% set roomName = "Signature Suite " ~ loop.index %}{% endif %}
+                    <option value="{{ roomName }}">{{ roomName }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="step-actions">
+            <button type="button" class="btn btn-primary btn-next" data-next="2">Continue</button>
+          </div>
+        </div>
+
+        <!-- STEP 2: GUEST DETAILS -->
+        <div class="booking-step" id="step-2" hidden>
+          <h2 class="step-title">Guest Details</h2>
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label for="fullname">Full Name <span aria-hidden="true">*</span></label>
+              <input type="text" id="fullname" name="fullname" required class="form-input" autocomplete="name" aria-required="true">
+              <div class="form-error" id="error-fullname" role="alert" aria-live="polite"></div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address <span aria-hidden="true">*</span></label>
+              <input type="email" id="email" name="email" required class="form-input" autocomplete="email" aria-required="true">
+              <div class="form-error" id="error-email" role="alert" aria-live="polite"></div>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone / WhatsApp <span aria-hidden="true">*</span></label>
+              <input type="tel" id="phone" name="phone" required class="form-input" autocomplete="tel" aria-required="true">
+              <div class="form-error" id="error-phone" role="alert" aria-live="polite"></div>
+            </div>
+            <div class="form-group full-width">
+              <label for="requests">Special Requests</label>
+              <textarea id="requests" name="requests" rows="3" class="form-input"></textarea>
+            </div>
+          </div>
+          <div class="step-actions split">
+            <button type="button" class="btn btn-outline btn-prev" data-prev="1">Back</button>
+            <button type="button" class="btn btn-primary btn-next" data-next="3">Continue</button>
+          </div>
+        </div>
+
+        <!-- STEP 3: REVIEW -->
+        <div class="booking-step" id="step-3" hidden>
+          <h2 class="step-title">Review Enquiry</h2>
+          <div class="review-card">
+            <h3 class="review-hotel">Hotel Right Now</h3>
+            
+            <dl class="review-list">
+              <div class="review-item"><dt>Check-in</dt><dd id="rev-checkin"></dd></div>
+              <div class="review-item"><dt>Check-out</dt><dd id="rev-checkout"></dd></div>
+              <div class="review-item"><dt>Guests</dt><dd id="rev-guests"></dd></div>
+              <div class="review-item"><dt>Room preference</dt><dd id="rev-room"></dd></div>
+              <div class="review-item"><dt>Guest</dt><dd id="rev-name"></dd></div>
+              <div class="review-item"><dt>Email</dt><dd id="rev-email"></dd></div>
+              <div class="review-item"><dt>Phone</dt><dd id="rev-phone"></dd></div>
+              <div class="review-item"><dt>Special requests</dt><dd id="rev-requests"></dd></div>
+            </dl>
+          </div>
+          <div class="step-actions split">
+            <button type="button" class="btn btn-outline btn-prev" data-prev="2">Back</button>
+            <button type="submit" class="btn btn-primary" id="btn-submit">Send Booking Enquiry</button>
+          </div>
+          {% if site.whatsapp and site.whatsapp != "CONTENT REQUIRED" and site.whatsapp != "TBD" %}
+          <div class="step-actions" style="margin-top: var(--space-4); justify-content: center;">
+            <button type="button" class="btn btn-outline" id="btn-whatsapp" data-wa="{{ site.whatsapp | replace('+', '') | replace(' ', '') }}">Enquire via WhatsApp</button>
+          </div>
+          {% endif %}
+        </div>
+
+        <!-- SUCCESS STATE -->
+        <div class="booking-step" id="step-success" hidden style="text-align: center; padding-block: var(--space-8);">
+          <div class="success-icon" aria-hidden="true">✓</div>
+          <h2 class="step-title" style="margin-bottom: var(--space-4); border: none;">Enquiry Received</h2>
+          <p style="color: var(--espresso); opacity: 0.8; max-width: 400px; margin: 0 auto var(--space-6);">Thank you. Your booking enquiry has been received. Our team will contact you shortly to confirm availability.</p>
+          <a href="/" class="btn btn-outline">Return Home</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</section>
+
+<script src="/assets/js/booking.js" defer></script>

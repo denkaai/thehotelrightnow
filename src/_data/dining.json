@@ -1,1 +1,28 @@
-[]
+{
+  "images": [
+    {
+      "src": "/assets/img/dining/default-pure-veg-restaurant-5.webp",
+      "alt": "Plated pure veg restaurant meal with rice and curries",
+      "width": 750,
+      "height": 550
+    },
+    {
+      "src": "/assets/img/dining/dinner-1.webp",
+      "alt": "A dining table set with warm lights",
+      "width": 700,
+      "height": 700
+    },
+    {
+      "src": "/assets/img/dining/dinner-2.webp",
+      "alt": "Dining area with thatched roof and ambient lighting",
+      "width": 1500,
+      "height": 945
+    },
+    {
+      "src": "/assets/img/dining/events.webp",
+      "alt": "Event dining space decorated with lights",
+      "width": 1254,
+      "height": 1254
+    }
+  ]
+}

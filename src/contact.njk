@@ -1,0 +1,309 @@
+---
+layout: layouts/base.njk
+title: Contact & Enquiries — thehotelrightnow
+eyebrow: Get in Touch
+description: Reach out to plan your stay, dining reservation, or private event.
+heroImage: /assets/img/hotel/chatgpt-image-sep-29,-2026,-08_59_28-am.webp
+---
+
+{% include "components/page-hero.njk" %}
+
+<style>
+  /* ─── Contact page ─── */
+  .contact-section {
+    background: var(--charcoal);
+    padding-block: var(--space-16);
+  }
+
+  .contact-layout {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  @media (min-width: 900px) {
+    .contact-layout {
+      grid-template-columns: 320px 1fr;
+    }
+  }
+
+  /* ─── Contact details sidebar ─── */
+  .contact-details {
+    color: var(--ivory);
+  }
+
+  .contact-details-heading {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    margin-bottom: var(--space-8);
+    color: var(--ivory);
+  }
+
+  .contact-detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid rgba(245, 240, 230, 0.12);
+  }
+
+  .contact-detail-item:last-of-type {
+    border-bottom: none;
+  }
+
+  .contact-detail-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--amber);
+    font-weight: 600;
+  }
+
+  .contact-detail-value {
+    font-size: 1rem;
+    color: var(--ivory);
+  }
+
+  .contact-detail-value a {
+    color: var(--ivory);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .contact-detail-value a:hover,
+  .contact-detail-value a:focus-visible {
+    color: var(--amber);
+  }
+
+  /* ─── Form card ─── */
+  .contact-form-card {
+    background: var(--ivory);
+    border-radius: var(--border-radius-md);
+    padding: var(--space-10);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+  }
+
+  .contact-form-heading {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    color: var(--charcoal);
+    margin-bottom: var(--space-8);
+    padding-bottom: var(--space-4);
+    border-bottom: 2px solid var(--amber);
+  }
+
+  /* ─── Two-col grid for short fields ─── */
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  @media (min-width: 600px) {
+    .form-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .form-field--full {
+      grid-column: 1 / -1;
+    }
+  }
+
+  /* ─── Individual field ─── */
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .form-label {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #2a2116;
+    letter-spacing: 0.02em;
+  }
+
+  .form-label span.required {
+    color: var(--amber);
+    margin-left: 2px;
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    background: #fff;
+    border: 1px solid #c8bfaf;
+    border-radius: var(--border-radius-sm);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--charcoal);
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    box-sizing: border-box;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .form-input::placeholder,
+  .form-textarea::placeholder {
+    color: #a09080;
+  }
+
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--amber);
+    box-shadow: 0 0 0 3px rgba(217, 164, 65, 0.25);
+  }
+
+  .form-select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23D9A441' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+    cursor: pointer;
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 140px;
+  }
+
+  .form-submit {
+    display: block;
+    width: 100%;
+    padding: 1rem 2rem;
+    background: var(--amber);
+    color: var(--charcoal);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.18s ease, transform 0.12s ease;
+    margin-top: var(--space-4);
+  }
+
+  .form-submit:hover,
+  .form-submit:focus-visible {
+    background: #c4912e;
+    transform: translateY(-1px);
+  }
+
+  .form-submit:focus-visible {
+    outline: 3px solid var(--teal-glow);
+    outline-offset: 2px;
+  }
+</style>
+
+<section class="contact-section" id="enquiry">
+  <div class="contact-layout">
+
+    {# ─── Contact Details Sidebar ─── #}
+    <aside class="contact-details">
+      <h2 class="contact-details-heading">Find Us</h2>
+
+      <div class="contact-detail-item">
+        <span class="contact-detail-label">Location</span>
+        <span class="contact-detail-value">Eastern Bypass, Ruiru-Kamakis, Kenya</span>
+      </div>
+
+      {% if site.phone and site.phone != "CONTENT REQUIRED" %}
+      <div class="contact-detail-item">
+        <span class="contact-detail-label">Phone</span>
+        <span class="contact-detail-value">
+          <a href="tel:{{ site.phone | replace(' ', '') }}">{{ site.phone }}</a>
+        </span>
+      </div>
+      {% endif %}
+
+      {% if site.whatsapp and site.whatsapp != "CONTENT REQUIRED" %}
+      <div class="contact-detail-item">
+        <span class="contact-detail-label">WhatsApp</span>
+        <span class="contact-detail-value">
+          <a href="https://wa.me/{{ site.whatsapp | replace('+', '') | replace(' ', '') }}" target="_blank" rel="noopener noreferrer">{{ site.whatsapp }}</a>
+        </span>
+      </div>
+      {% endif %}
+
+      {% if site.email and site.email != "CONTENT REQUIRED" %}
+      <div class="contact-detail-item">
+        <span class="contact-detail-label">Email</span>
+        <span class="contact-detail-value">
+          <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+        </span>
+      </div>
+      {% endif %}
+
+      <div class="contact-detail-item">
+        <span class="contact-detail-label">Opening Hours</span>
+        <span class="contact-detail-value">Open Daily</span>
+      </div>
+
+      {# Venue preview image #}
+      <div style="margin-top: var(--space-8); border-radius: var(--border-radius-sm); overflow: hidden; opacity: 0.85;">
+        <img src="/assets/img/hotel/chatgpt-image-sep-29,-2026,-08_59_28-am.webp" alt="Hotel Right Now venue exterior at night" width="1536" height="1024" loading="lazy" style="width: 100%; height: auto; display: block; object-fit: cover; aspect-ratio: 16/9;">
+      </div>
+    </aside>
+
+    {# ─── Enquiry Form ─── #}
+    <div class="contact-form-card">
+      <h2 class="contact-form-heading">Send an Enquiry</h2>
+
+      <form action="#" method="POST">
+        <div class="form-grid">
+
+          <div class="form-field">
+            <label class="form-label" for="name">Full Name <span class="required" aria-hidden="true">*</span></label>
+            <input class="form-input" type="text" id="name" name="name" required placeholder="Your name">
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="phone">Phone Number</label>
+            <input class="form-input" type="tel" id="phone" name="phone" placeholder="+254 …">
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="email">Email Address <span class="required" aria-hidden="true">*</span></label>
+            <input class="form-input" type="email" id="email" name="email" required placeholder="you@example.com">
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="interest">Area of Interest <span class="required" aria-hidden="true">*</span></label>
+            <select class="form-select" id="interest" name="interest" required>
+              <option value="" disabled selected>Select one…</option>
+              <option value="rooms">Rooms &amp; Suites</option>
+              <option value="dining">Dining Reservation</option>
+              <option value="events">Private Events</option>
+              <option value="other">General Enquiry</option>
+            </select>
+          </div>
+
+          <div class="form-field form-field--full">
+            <label class="form-label" for="date">Preferred Date (if applicable)</label>
+            <input class="form-input" type="date" id="date" name="date">
+          </div>
+
+          <div class="form-field form-field--full">
+            <label class="form-label" for="message">Message <span class="required" aria-hidden="true">*</span></label>
+            <textarea class="form-textarea" id="message" name="message" rows="6" required placeholder="Tell us about your plans…"></textarea>
+          </div>
+
+        </div>
+
+        <button type="submit" class="form-submit">Send Enquiry</button>
+      </form>
+    </div>
+
+  </div>
+</section>

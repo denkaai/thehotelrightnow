@@ -1,17 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
+    <script>document.documentElement.classList.replace('no-js', 'js');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title or site.displayName }}</title>
-    {% if site.description != "TBD" %}
-    <meta name="description" content="{{ site.description }}">
-    {% endif %}
+    <meta name="description" content="{% if site.description and site.description != 'CONTENT REQUIRED' %}{{ site.description }}{% else %}thehotelrightnow — A distinctive architectural retreat in Ruiru-Kamakis, Kenya. Handcrafted timber hospitality, immersive spaces, private dining and events.{% endif %}">
     <link rel="canonical" href="{{ site.url }}{{ page.url }}">
-    
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏨</text></svg>">
-    
-    <!-- Fonts would be preloaded here -->
+
+    <!-- Favicons -->
+    <link rel="icon" href="/assets/img/brand/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="/assets/img/brand/favicon-32x32.png">
+    <link rel="apple-touch-icon" href="/assets/img/brand/apple-touch-icon.png">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    <meta property="og:title" content="{{ title or site.displayName }}">
+    <meta property="og:description" content="{% if site.description and site.description != 'CONTENT REQUIRED' %}{{ site.description }}{% else %}A distinctive architectural retreat in Ruiru-Kamakis, Kenya.{% endif %}">
+    <meta property="og:image" content="{{ site.url }}/assets/img/hero/hero-1-2400.webp">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Preload hero image (LCP) -->
+    <link rel="preload" as="image" href="/assets/img/hero/hero-1-2400.webp" fetchpriority="high">
+
+    <!-- Preload self-hosted fonts (latin subset, normal style only) -->
+    <link rel="preload" href="/assets/fonts/cormorant-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="/assets/fonts/cormorant-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="/assets/fonts/jost-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="/assets/fonts/jost-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
     <link rel="stylesheet" href="/assets/css/tokens.css">
     <link rel="stylesheet" href="/assets/css/base.css">
     <link rel="stylesheet" href="/assets/css/layout.css">
@@ -20,13 +38,15 @@
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    <div id="top-anchor"></div>
+    <div id="top-anchor" aria-hidden="true"></div>
     {% include "components/header.njk" %}
     <main id="main-content">
         {{ content | safe }}
     </main>
     {% include "components/footer.njk" %}
     {% include "components/whatsapp.njk" %}
-    <script type="module" src="/assets/js/main.js"></script>
+    <script src="/assets/js/main.js" defer></script>
+    <script src="/assets/js/hero.js" defer></script>
+    <script src="/assets/js/animations.js" defer></script>
 </body>
 </html>

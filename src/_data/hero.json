@@ -1,0 +1,25 @@
+{
+  "slides": [
+    {
+      "src": "/assets/img/hero/hero-1-2400.webp",
+      "srcMobile": "/assets/img/hero/hero-1-1200.webp",
+      "alt": "Wide shot of thatched timber architectural pavilions and gazebos around an open courtyard under a blue sky",
+      "width": 1849,
+      "height": 851
+    },
+    {
+      "src": "/assets/img/hero/hero-2-2400.webp",
+      "srcMobile": "/assets/img/hero/hero-2-1200.webp",
+      "alt": "Open-air courtyard with stone-mosaic portal arches, timber seating, hanging decorations, and thatched balconies",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "src": "/assets/img/hero/hero-3-2400.webp",
+      "srcMobile": "/assets/img/hero/hero-3-1200.webp",
+      "alt": "Lit bamboo and staircase structure with intricate carved timber pillars",
+      "width": 1681,
+      "height": 936
+    }
+  ]
+}

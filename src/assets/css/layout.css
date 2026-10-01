@@ -8,3 +8,49 @@
     padding-inline: var(--space-8);
   }
 }
+
+.container-narrow {
+  max-width: 900px;
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 768px) {
+  .container-narrow {
+    padding-inline: var(--space-8);
+  }
+}
+
+/* Section Spacing */
+.section-padding {
+  padding-block: var(--space-8);
+}
+@media (min-width: 768px) {
+  .section-padding {
+    padding-block: var(--space-12);
+  }
+}
+@media (min-width: 1024px) {
+  .section-padding {
+    padding-block: var(--space-16);
+  }
+}
+
+.section-padding-sm {
+  padding-block: var(--space-6);
+}
+}
+
+/* Full-bleed sections (breaks out of container) */
+.full-bleed {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+}
+
+.full-bleed img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}

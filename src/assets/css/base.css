@@ -29,6 +29,10 @@
 }
 
 /* Reset */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-h);
+}
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -38,10 +42,24 @@
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  background-color: var(--ivory);
-  color: var(--charcoal);
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--charcoal);
+  color: var(--ivory);
   font-family: var(--font-sans);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
 }
+body.menu-open {
+  overflow: hidden;
+}
+
+/* Push footer to bottom of short pages */
+main {
+  flex: 1;
+}
+
 img, picture, video, canvas, svg {
   display: block;
   max-width: 100%;
@@ -56,10 +74,65 @@ p, h1, h2, h3, h4, h5, h6 {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
   font-weight: 400;
-  color: var(--espresso);
+  color: var(--ivory);
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* Focus-visible: visible keyboard focus ring */
+:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ─── Scroll-reveal animation base states ─── */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+}
+.reveal {
+  transition: opacity var(--transition-reveal), transform var(--transition-reveal);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.js .reveal-scale {
+  opacity: 0;
+  transform: scale(0.97);
+}
+.reveal-scale {
+  transition: opacity var(--transition-reveal), transform var(--transition-reveal);
+}
+.reveal-scale.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stagger delays for child reveals */
+.reveal-stagger > * { transition-delay: 0s; }
+.reveal-stagger > *:nth-child(2) { transition-delay: 0.1s; }
+.reveal-stagger > *:nth-child(3) { transition-delay: 0.2s; }
+.reveal-stagger > *:nth-child(4) { transition-delay: 0.3s; }
+
+/* Reduced motion: disable non-essential transitions */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal,
+  .reveal-scale {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }

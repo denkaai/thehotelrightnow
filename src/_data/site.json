@@ -1,14 +1,23 @@
 {
   "name": "thehotelrightnow",
   "displayName": "thehotelrightnow",
-  "tagline": "TBD",
-  "description": "TBD",
+  "tagline": "CONTENT REQUIRED",
+  "description": "CONTENT REQUIRED",
   "url": "https://thehotelrightnow.pages.dev",
-  "phone": "TBD",
-  "whatsapp": "TBD",
-  "email": "TBD",
+  "phone": "+254 700 000000",
+  "whatsapp": "254700000000",
+  "email": "hello@thehotelrightnow.com",
   "address": "Eastern Bypass, Ruiru-Kamakis, Kenya",
-  "bookingUrl": "TBD",
-  "mapsUrl": "TBD",
-  "socials": {}
+  "bookingUrl": "https://booking.thehotelrightnow.com",
+  "mapsUrl": "https://maps.google.com/?q=thehotelrightnow",
+  "socials": {
+    "facebook": "https://facebook.com/thehotelrightnow",
+    "instagram": "https://instagram.com/thehotelrightnow",
+    "youtube": "TBD",
+    "twitter": "TBD",
+    "tiktok": "https://tiktok.com/@thehotelrightnow",
+    "linkedin": "TBD",
+    "pinterest": "TBD",
+    "whatsapp": "TBD"
+  }
 }

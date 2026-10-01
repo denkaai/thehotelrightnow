@@ -6,7 +6,9 @@
   "main": "index.js",
   "scripts": {
     "build": "eleventy",
-    "start": "eleventy --serve"
+    "start": "eleventy --serve",
+    "dev": "eleventy --serve",
+    "images": "node scripts/optimise-images.mjs"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +16,10 @@
   "dependencies": {
     "@11ty/eleventy": "^3.0.0",
     "@fontsource/cormorant-garamond": "^5.3.0",
-    "@fontsource/jost": "^5.3.0"
+    "@fontsource/jost": "^5.3.0",
+    "simple-icons": "^16.33.0"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.5"
   }
 }

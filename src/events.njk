@@ -1,0 +1,29 @@
+---
+layout: layouts/base.njk
+title: Events & Gatherings — thehotelrightnow
+eyebrow: Occasions
+description: Distinctive venues for memorable gatherings framed by atmospheric architectural woodwork.
+heroImage: /assets/img/events/events.webp
+---
+
+{% include "components/page-hero.njk" %}
+
+<section class="section-padding">
+  <div class="container">
+    {% if events.images and events.images.length > 0 %}
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: var(--space-8);">
+        {% for img in events.images %}
+          <div style="border-radius: var(--border-radius-sm); overflow: hidden;">
+            <img src="{{ img.src }}" alt="{{ img.alt }}" width="{{ img.width }}" height="{{ img.height }}" loading="lazy" style="width: 100%; height: auto; object-fit: cover; aspect-ratio: 4/3;">
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div style="text-align: center; padding: var(--space-12) 0; max-width: 600px; margin: 0 auto;">
+        <h2 style="font-family: var(--font-serif); font-size: 2.5rem; margin-bottom: var(--space-4);">Venues coming soon</h2>
+        <p style="margin-bottom: var(--space-8); color: var(--espresso);">Our event venue portfolio is currently in preparation.</p>
+        <a href="/contact/#enquiry" class="btn btn-primary">Make an Enquiry</a>
+      </div>
+    {% endif %}
+  </div>
+</section>

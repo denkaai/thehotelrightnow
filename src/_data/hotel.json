@@ -1,0 +1,40 @@
+{
+  "images": [
+    {
+      "src": "/assets/img/hotel/chatgpt-image-sep-29,-2026,-08_59_28-am.webp",
+      "alt": "Hotel exterior view featuring glowing lights",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "src": "/assets/img/hotel/clear.webp",
+      "alt": "Clear view of the hotel architecture",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "src": "/assets/img/hotel/events-1.webp",
+      "alt": "Hotel gathering space",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "src": "/assets/img/hotel/events.webp",
+      "alt": "Decorated interior area in the hotel",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "src": "/assets/img/hotel/night-1.webp",
+      "alt": "Night view of the hotel structure",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "src": "/assets/img/hotel/night.webp",
+      "alt": "Atmospheric evening shot of the hotel",
+      "width": 1254,
+      "height": 1254
+    }
+  ]
+}

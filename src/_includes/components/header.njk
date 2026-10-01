@@ -1,12 +1,23 @@
 <header class="site-header" id="site-header">
   <div class="container header-container">
-    <a href="/" class="brand-logo">{{ site.displayName }}</a>
+    <a href="/" class="brand-logo" aria-label="{{ site.displayName }}">
+      <img src="/assets/img/brand/logo-transparent-2400.webp" srcset="/assets/img/brand/logo-transparent-1200.webp 1200w, /assets/img/brand/logo-transparent-2400.webp 2400w" alt="thehotelrightnow logo" style="width: auto; display: block;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <span style="display: none;">{{ site.displayName }}</span>
+    </a>
     
     <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu">
       <span class="hamburger"></span>
     </button>
 
     <nav class="main-nav" id="mobile-menu" aria-label="Main Navigation">
+      <div class="mobile-quick-actions">
+        {% if site.phone and site.phone != 'CONTENT REQUIRED' and site.phone != 'TBD' %}
+          <a href="tel:{{ site.phone | replace(' ', '') }}" class="btn btn-pill">Call Us</a>
+        {% endif %}
+        {% if site.whatsapp and site.whatsapp != 'CONTENT REQUIRED' and site.whatsapp != 'TBD' %}
+          <a href="https://wa.me/{{ site.whatsapp | replace('+', '') | replace(' ', '') }}" class="btn btn-pill" target="_blank" rel="noopener noreferrer">WhatsApp Us</a>
+        {% endif %}
+      </div>
       <ul class="nav-list">
         <li><a href="/">Home</a></li>
         <li><a href="/rooms/">Rooms &amp; Suites</a></li>
@@ -16,7 +27,10 @@
         <li><a href="/contact/">Contact</a></li>
       </ul>
       <div class="header-cta">
-        <a href="{% if site.bookingUrl != 'TBD' %}{{ site.bookingUrl }}{% else %}/contact/#enquiry{% endif %}" class="btn btn-primary">Book Now</a>
+        <a href="/book/" class="btn btn-primary">Book Now</a>
+      </div>
+      <div class="mobile-socials">
+        {% include "components/social-icons.njk" %}
       </div>
     </nav>
   </div>

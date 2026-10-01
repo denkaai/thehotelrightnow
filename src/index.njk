@@ -1,8 +1,269 @@
 ---
 layout: layouts/base.njk
-title: Home
+title: thehotelrightnow — Architectural Hospitality & Retreat
 ---
-<div style="height: 100vh; background: #999;">Hero placeholder</div>
-<div style="height: 2000px; padding-top: 100px;">
-  <h1>Welcome to {{ site.displayName }}</h1>
-</div>
+
+{# ─── 1. Cinematic Hero Section with Image Slider ─── #}
+<section class="hero-section" id="hero" aria-label="Welcome">
+  {% if hero.slides and hero.slides.length > 0 %}
+    <div class="hero-slider" aria-roledescription="carousel" aria-label="Hotel Image Showcase">
+      {% for slide in hero.slides %}
+        <div class="hero-slide{% if loop.first %} is-active{% endif %}" role="group" aria-roledescription="slide" aria-label="{{ loop.index }} of {{ hero.slides.length }}">
+          <picture>
+            <source media="(max-width: 767px)" srcset="{{ slide.srcMobile }}">
+            <img src="{{ slide.src }}" alt="{{ slide.alt }}" width="{{ slide.width }}" height="{{ slide.height }}" {% if loop.first %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %}>
+          </picture>
+        </div>
+      {% endfor %}
+
+      <button class="hero-arrow hero-prev" aria-label="Previous slide">&#10094;</button>
+      <button class="hero-arrow hero-next" aria-label="Next slide">&#10095;</button>
+
+      <div class="hero-dots" role="tablist" aria-label="Slide selection">
+        {% for slide in hero.slides %}
+          <button class="hero-dot{% if loop.first %} is-active{% endif %}" role="tab" aria-selected="{% if loop.first %}true{% else %}false{% endif %}" aria-label="Slide {{ loop.index }}"></button>
+        {% endfor %}
+      </div>
+    </div>
+  {% else %}
+    <div class="hero-media-canvas" aria-hidden="true"></div>
+  {% endif %}
+  
+  <div class="hero-overlay" aria-hidden="true"></div>
+
+  <div class="container hero-content">
+    {% if site.address and site.address != "CONTENT REQUIRED" and site.address != "TBD" %}
+      <span class="hero-eyebrow">{{ site.address }}</span>
+    {% endif %}
+    
+    <h1 class="hero-title">{{ site.displayName }}</h1>
+    
+    {% if site.tagline and site.tagline != "CONTENT REQUIRED" and site.tagline != "TBD" %}
+      <p class="hero-tagline">{{ site.tagline }}</p>
+    {% else %}
+      <span class="hero-divider" aria-hidden="true"></span>
+    {% endif %}
+
+    <div class="hero-actions">
+      <a href="/book/" class="btn btn-primary">Book Your Stay</a>
+      
+      <a href="#experiences-nav" class="btn btn-outline-light">Discover the Hotel</a>
+    </div>
+  </div>
+
+  <a href="#experiences-nav" class="hero-scroll-cue" aria-label="Scroll to content">
+    <span class="scroll-arrow" aria-hidden="true">&#8595;</span>
+  </a>
+</section>
+
+
+
+{# ─── 3. Welcome ─── #}
+<div id="experiences-nav" aria-hidden="true" style="position:relative; top: calc(var(--header-h) * -1);"></div>
+{% if hotel.images and hotel.images.length > 0 %}
+<section class="editorial-intro" aria-labelledby="intro-heading" style="padding-top: var(--space-16);">
+  <div class="container intro-wrapper" style="margin-bottom: var(--space-8);">
+    <span class="eyebrow reveal">Welcome</span>
+    <h2 id="intro-heading" class="intro-lead reveal" style="transition-delay:0.1s;">
+      A distinctive retreat shaped by handcrafted architecture, natural timber, and warm hospitality.
+    </h2>
+
+    {% if site.description and site.description != "CONTENT REQUIRED" %}
+      <p class="intro-description reveal" style="transition-delay:0.15s; margin-bottom: 0;">{{ site.description }}</p>
+    {% endif %}
+  </div>
+
+  <div class="full-bleed reveal reveal-scale" style="transition-delay:0.2s; height: 75vh; min-height: 500px;">
+    <picture style="display: block; width: 100%; height: 100%; overflow: hidden;">
+      <img src="{{ hotel.images[0].src }}" alt="{{ hotel.images[0].alt }}" width="{{ hotel.images[0].width }}" height="{{ hotel.images[0].height }}" loading="lazy" style="width:100%; height:100%; object-fit:cover; object-position: center 35%;">
+    </picture>
+  </div>
+</section>
+{% endif %}
+
+
+{# ─── 4. Spaces & Decor (from Gallery) ─── #}
+{% if gallery.images and gallery.images.length >= 3 %}
+<section aria-label="Spaces & Decor">
+  <div class="story-list">
+    
+    <article class="story-fw-section" id="experience-decor-1">
+      <img class="story-fw-bg" src="{{ gallery.images[0].src }}" alt="{{ gallery.images[0].alt }}" loading="lazy">
+      <div class="story-fw-overlay"></div>
+      <div class="container story-fw-container">
+        <div class="story-fw-content">
+          <span class="story-fw-index">01 / Spaces</span>
+          <h2 class="story-fw-title">Courtyard Entrance</h2>
+          <p class="story-fw-description">
+            Step into our welcoming open-air courtyard framed by distinctive timber pavilions and ambient lighting.
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <article class="story-fw-section" id="experience-decor-2">
+      <img class="story-fw-bg" src="{{ gallery.images[1].src }}" alt="{{ gallery.images[1].alt }}" loading="lazy">
+      <div class="story-fw-overlay"></div>
+      <div class="container story-fw-container">
+        <div class="story-fw-content">
+          <span class="story-fw-index">02 / Spaces</span>
+          <h2 class="story-fw-title">Architectural Ceilings</h2>
+          <p class="story-fw-description">
+            Look up to discover intricate geometric patterns and warm glowing accents built directly into the structure.
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <article class="story-fw-section" id="experience-decor-3">
+      <img class="story-fw-bg" src="{{ gallery.images[2].src }}" alt="{{ gallery.images[2].alt }}" loading="lazy">
+      <div class="story-fw-overlay"></div>
+      <div class="container story-fw-container">
+        <div class="story-fw-content">
+          <span class="story-fw-index">03 / Spaces</span>
+          <h2 class="story-fw-title">Illuminated Pathways</h2>
+          <p class="story-fw-description">
+            Wander through striking neon-lit archways that blend traditional materials with modern energy.
+          </p>
+        </div>
+      </div>
+    </article>
+    
+  </div>
+</section>
+{% endif %}
+
+{# ─── 5. Dining & Bar ─── #}
+{% if dining.images and dining.images.length > 0 %}
+<section class="section-padding" style="background:var(--ivory); border-top:1px solid rgba(0,0,0,0.05);" id="experience-dining">
+  <div class="container">
+    <div class="alternating-section">
+      <div class="alternating-image reveal">
+        <img src="{{ dining.images[0].src }}" alt="{{ dining.images[0].alt }}" width="{{ dining.images[0].width }}" height="{{ dining.images[0].height }}" loading="lazy">
+      </div>
+      <div class="alternating-content reveal" style="transition-delay:0.1s;">
+        <span class="eyebrow">Gastronomy</span>
+        <h2>Dining &amp; Bar</h2>
+        <p>Experience culinary excellence crafted from locally sourced ingredients, served in an atmosphere of refined elegance.</p>
+        <a href="/dining/" class="btn btn-outline">Discover Dining</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ─── 6. Events & Gatherings ─── #}
+{% if events.images and events.images.length > 0 %}
+<section class="section-padding" style="background:var(--charcoal); color:var(--ivory);" id="experience-events">
+  <div class="container">
+    <div class="alternating-section reverse">
+      <div class="alternating-image reveal" style="transition-delay:0.1s;">
+        <img src="{{ events.images[0].src }}" alt="{{ events.images[0].alt }}" width="{{ events.images[0].width }}" height="{{ events.images[0].height }}" loading="lazy">
+      </div>
+      <div class="alternating-content reveal">
+        <span class="eyebrow" style="color:var(--amber);">Occasions</span>
+        <h2 style="color:var(--ivory);">Events &amp; Gatherings</h2>
+        <p style="color:rgba(217, 208, 195, 0.85);">Host memorable occasions in our versatile event spaces, where impeccable service meets architectural beauty.</p>
+        <a href="/events/" class="btn btn-outline-light">Explore Venues</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ─── 7. Cultural Feature (Shiva) ─── #}
+{% set featuredImg = null %}
+{% for img in gallery.images %}
+  {% if img.featured %}
+    {% set featuredImg = img %}
+  {% endif %}
+{% endfor %}
+
+{% if featuredImg %}
+<section style="background:var(--ivory);">
+  <div class="full-bleed reveal reveal-scale">
+    <picture style="display: block; width: 100%; height: 80vh; min-height: 500px; overflow: hidden;">
+      <img src="{{ featuredImg.src }}" alt="{{ featuredImg.alt }}" width="{{ featuredImg.width }}" height="{{ featuredImg.height }}" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; object-position: center;">
+    </picture>
+  </div>
+</section>
+{% endif %}
+
+{# ─── 8. Rooms & Suites ─── #}
+<section class="section-padding" style="background:var(--ivory);" id="experience-rooms">
+  <div class="container">
+    <div class="gallery-preview-header reveal">
+      <span class="eyebrow">Living</span>
+      <h2 class="gallery-preview-title">Rooms &amp; Suites</h2>
+      <p class="gallery-preview-lead">Find your perfect sanctuary.</p>
+    </div>
+
+    {% if rooms.rooms and rooms.rooms.length > 0 %}
+      <div class="room-cards-grid">
+        {% for room in rooms.rooms %}
+        <article class="room-card reveal" style="transition-delay: {{ loop.index0 * 0.1 }}s;">
+          <div class="room-card-image">
+            <img src="{{ room.src }}" alt="{{ room.alt }}" loading="lazy">
+          </div>
+          <div class="room-card-content">
+            <h3 class="room-card-title">{{ room.name if room.name != "CONTENT REQUIRED" else "Signature Suite" }}</h3>
+            <p class="room-card-description">{{ room.description if room.description != "CONTENT REQUIRED" else "Experience ultimate comfort in our thoughtfully designed spaces." }}</p>
+            <div class="room-card-footer">
+              <a href="/rooms/" class="btn btn-outline">Explore Room</a>
+            </div>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div style="text-align: center; padding: var(--space-12) 0;">
+        <h3 style="font-family: var(--font-serif); font-size: 2rem; color: var(--espresso); margin-bottom: var(--space-4);">Rooms coming soon</h3>
+        <a href="/contact/#enquiry" class="btn btn-primary">Make an Enquiry</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{# ─── 9. Reservation / Enquiry CTA ─── #}
+<section class="reservation-cta-section section-padding" id="reservation-enquiry" aria-labelledby="reservation-heading">
+  <div class="container">
+    <div class="reservation-cta-card">
+      <span class="eyebrow">Reservations &amp; Private Enquiries</span>
+      <h2 id="reservation-heading" class="reservation-cta-title">Begin Your Stay at {{ site.displayName }}</h2>
+      
+      {% if site.address and site.address != "CONTENT REQUIRED" %}
+        <p class="reservation-cta-location">{{ site.address }}</p>
+      {% endif %}
+
+      <p class="reservation-cta-text">
+        Direct bookings and tailored arrangements for accommodations, private dining, and gatherings. Contact our team to plan your arrival.
+      </p>
+
+      {% set hasContactInfo = (site.phone and site.phone != "CONTENT REQUIRED") or (site.email and site.email != "CONTENT REQUIRED") or (site.whatsapp and site.whatsapp != "CONTENT REQUIRED") %}
+      {% if hasContactInfo %}
+        <div class="reservation-channels">
+          {% if site.phone and site.phone != "CONTENT REQUIRED" %}
+            <a href="tel:{{ site.phone | replace(' ', '') }}" class="channel-link">
+              <span>Tel: {{ site.phone }}</span>
+            </a>
+          {% endif %}
+          {% if site.email and site.email != "CONTENT REQUIRED" %}
+            <a href="mailto:{{ site.email }}" class="channel-link">
+              <span>Email: {{ site.email }}</span>
+            </a>
+          {% endif %}
+          {% if site.whatsapp and site.whatsapp != "CONTENT REQUIRED" %}
+            <a href="https://wa.me/{{ site.whatsapp | replace('+', '') | replace(' ', '') }}" class="channel-link" target="_blank" rel="noopener noreferrer">
+              <span>WhatsApp: +{{ site.whatsapp | replace('+', '') }}</span>
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      <div class="reservation-actions">
+        <a href="/book/" class="btn btn-primary">Book Your Stay</a>
+        <a href="/contact/" class="btn btn-outline-light">Contact Details</a>
+      </div>
+    </div>
+  </div>
+</section>

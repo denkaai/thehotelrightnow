@@ -1,1 +1,7 @@
-{}
+{
+  "checkIn": "CONTENT REQUIRED",
+  "checkOut": "CONTENT REQUIRED",
+  "cancellation": "CONTENT REQUIRED",
+  "pets": "CONTENT REQUIRED",
+  "children": "CONTENT REQUIRED"
+}

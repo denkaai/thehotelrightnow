@@ -1,0 +1,17 @@
+<section class="page-hero {% if heroImage %}has-background{% endif %}">
+  {% if heroImage %}
+    <div class="page-hero-bg">
+      <img src="{{ heroImage }}" alt="" loading="eager" fetchpriority="high">
+    </div>
+    <div class="hero-overlay" aria-hidden="true" style="opacity: 0.45; position: absolute; inset: 0; background: #000; z-index: 1;"></div>
+  {% endif %}
+  <div class="container page-hero-content" style="position: relative; z-index: 2;">
+    {% if eyebrow %}
+      <span class="eyebrow" style="color: var(--amber);">{{ eyebrow }}</span>
+    {% endif %}
+    <h1 class="page-hero-title">{{ title }}</h1>
+    {% if description %}
+      <p class="page-hero-description">{{ description }}</p>
+    {% endif %}
+  </div>
+</section>

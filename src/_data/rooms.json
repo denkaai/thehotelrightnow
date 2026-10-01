@@ -1,1 +1,42 @@
-[]
+{
+  "rooms": [
+    {
+      "name": "CONTENT REQUIRED",
+      "description": "CONTENT REQUIRED",
+      "src": "/assets/img/rooms/view.webp",
+      "alt": "Panoramic view from the accommodation balcony overlooking lush greenery",
+      "width": 1280,
+      "height": 1280
+    },
+    {
+      "name": "CONTENT REQUIRED",
+      "description": "CONTENT REQUIRED",
+      "src": "/assets/img/rooms/night.webp",
+      "alt": "Night view of accommodation area with ambient lighting",
+      "width": 1280,
+      "height": 1280
+    },
+    {
+      "name": "CONTENT REQUIRED",
+      "description": "CONTENT REQUIRED",
+      "src": "/assets/img/rooms/events-1.webp",
+      "alt": "Interior room featuring bamboo and timber architectural details",
+      "width": 1280,
+      "height": 1280
+    },
+    {
+      "name": "CONTENT REQUIRED",
+      "description": "CONTENT REQUIRED",
+      "src": "/assets/img/rooms/events.webp",
+      "alt": "Spacious room interior with warm evening tones and natural textures",
+      "width": 1280,
+      "height": 1280
+    }
+  ],
+  "images": [
+    { "src": "/assets/img/rooms/view.webp", "alt": "Panoramic view from the accommodation balcony", "width": 1280, "height": 1280 },
+    { "src": "/assets/img/rooms/night.webp", "alt": "Night view of accommodation area", "width": 1280, "height": 1280 },
+    { "src": "/assets/img/rooms/events-1.webp", "alt": "Interior with bamboo and timber details", "width": 1280, "height": 1280 },
+    { "src": "/assets/img/rooms/events.webp", "alt": "Room interior with warm evening tones", "width": 1280, "height": 1280 }
+  ]
+}
