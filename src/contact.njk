@@ -6,12 +6,14 @@ description: Reach out to plan your stay, dining reservation, or private event.
 heroImage: /assets/img/hotel/chatgpt-image-sep-29,-2026,-08_59_28-am.webp
 ---
 
-{% include "components/page-hero.njk" %}<style>
+{% include "components/page-hero.njk" %}
+
+<style>
   /* ─── Contact page ─── */
   .contact-section {
     background: var(--charcoal);
-    padding-block: var(--space-16);
-    overflow: hidden; /* For entrance animations */
+    padding-block: var(--space-16) var(--space-20);
+    overflow: hidden;
   }
 
   .contact-layout {
@@ -20,14 +22,14 @@ heroImage: /assets/img/hotel/chatgpt-image-sep-29,-2026,-08_59_28-am.webp
     padding-inline: var(--space-6);
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--space-8);
+    gap: var(--space-10);
     align-items: start;
   }
 
   @media (min-width: 900px) {
     .contact-layout {
-      grid-template-columns: 320px 1fr;
-      gap: var(--space-12);
+      grid-template-columns: 340px 1fr;
+      gap: var(--space-14);
     }
   }
 
@@ -37,15 +39,23 @@ heroImage: /assets/img/hotel/chatgpt-image-sep-29,-2026,-08_59_28-am.webp
     position: relative;
     border-radius: var(--border-radius-md);
     overflow: hidden;
-    padding: var(--space-10) var(--space-8);
+    padding: var(--space-12) var(--space-10);
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+    justify-content: flex-start;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+    min-height: 480px;
     /* Entrance Animation */
     opacity: 0;
     transform: translateX(-20px);
     animation: contactFadeIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  @media (max-width: 899px) {
+    .contact-details {
+      padding: var(--space-10) var(--space-8);
+      min-height: auto;
+    }
   }
 
   .contact-bg-wrap {
@@ -64,7 +74,14 @@ heroImage: /assets/img/hotel/chatgpt-image-sep-29,-2026,-08_59_28-am.webp
   .contact-bg-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(23, 20, 15, 0.88); /* luxury dark overlay */
+    /* Warm radial gradient: amber-tinted dark brown at top, deep charcoal at edges */
+    background:
+      radial-gradient(
+        ellipse at 50% 15%,
+        rgba(90, 58, 20, 0.80) 0%,
+        rgba(38, 28, 14, 0.92) 55%,
+        rgba(18, 15, 10, 0.97) 100%
+      );
   }
 
   .contact-details-content {
@@ -72,47 +89,48 @@ heroImage: /assets/img/hotel/chatgpt-image-sep-29,-2026,-08_59_28-am.webp
     z-index: 2;
   }
 
+  /* "HOTEL RIGHT NOW" — editorial heading */
   .contact-details-heading {
     font-family: var(--font-serif);
-    font-size: 2rem;
+    font-size: clamp(1.75rem, 2.8vw, 2.5rem);
+    line-height: 1.15;
+    font-weight: 400;
     margin-bottom: var(--space-10);
     color: var(--ivory);
   }
 
+  /* Contact rows — whitespace is the separator, no borders */
   .contact-detail-item {
     display: flex;
     flex-direction: column;
     gap: var(--space-1);
-    margin-bottom: var(--space-6);
-    padding-bottom: var(--space-6);
-    border-bottom: 1px solid rgba(247, 243, 236, 0.1); /* subtle ivory border */
+    margin-bottom: var(--space-7);
   }
 
   .contact-detail-item:last-of-type {
-    border-bottom: none;
     margin-bottom: 0;
-    padding-bottom: 0;
   }
 
   .contact-detail-label {
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--amber);
     font-weight: 600;
   }
 
   .contact-detail-value {
-    font-size: 1.0625rem;
-    color: rgba(247, 243, 236, 0.95);
+    font-size: 1rem;
+    color: rgba(247, 243, 236, 0.9);
+    line-height: 1.55;
   }
 
   .contact-detail-value a {
-    color: rgba(247, 243, 236, 0.95);
+    color: rgba(247, 243, 236, 0.9);
     text-decoration: none;
-    transition: color 0.2s ease;
-    padding-block: var(--space-1);
+    transition: color 0.25s ease;
     display: inline-block;
+    padding-block: 2px;
   }
 
   .contact-detail-value a:hover,
@@ -124,8 +142,8 @@ heroImage: /assets/img/hotel/chatgpt-image-sep-29,-2026,-08_59_28-am.webp
   .contact-form-card {
     background: var(--ivory);
     border-radius: 16px;
-    padding: var(--space-8);
-    box-shadow: 0 16px 48px rgba(10, 8, 6, 0.4);
+    padding: var(--space-10) var(--space-8);
+    box-shadow: 0 16px 56px rgba(10, 8, 6, 0.38);
     /* Entrance Animation */
     opacity: 0;
     transform: translateX(20px);
@@ -133,40 +151,47 @@ heroImage: /assets/img/hotel/chatgpt-image-sep-29,-2026,-08_59_28-am.webp
   }
   @media (min-width: 768px) {
     .contact-form-card {
-      padding: var(--space-12) var(--space-10);
+      padding: var(--space-14) var(--space-12);
     }
   }
 
+  /* "SEND AN ENQUIRY" — editorial heading */
   .contact-form-heading {
     font-family: var(--font-serif);
-    font-size: 2.25rem;
+    font-size: clamp(1.75rem, 2.8vw, 2.75rem);
+    line-height: 1.15;
+    font-weight: 400;
     color: var(--charcoal);
-    margin-bottom: var(--space-10);
+    /* padding-bottom creates space above the gold rule */
+    padding-bottom: var(--space-6);
+    margin-bottom: var(--space-12);
     position: relative;
-    padding-bottom: 0;
     border-bottom: none;
   }
 
+  /* Intentional thin gold rule — PRESERVED */
   .contact-form-heading::after {
     content: '';
     position: absolute;
-    bottom: -18px;
+    bottom: 0;
     left: 0;
-    width: 50px;
+    width: 48px;
     height: 1px;
     background: var(--amber);
   }
 
-  /* ─── Two-col grid for short fields ─── */
+  /* ─── Form grid — one continuous surface, whitespace only ─── */
   .form-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--space-6);
+    gap: var(--space-8);
   }
 
   @media (min-width: 600px) {
     .form-grid {
       grid-template-columns: 1fr 1fr;
+      column-gap: var(--space-8);
+      row-gap: var(--space-8);
     }
     .form-field--full {
       grid-column: 1 / -1;
@@ -177,30 +202,36 @@ heroImage: /assets/img/hotel/chatgpt-image-sep-29,-2026,-08_59_28-am.webp
   .form-field {
     display: flex;
     flex-direction: column;
-    gap: var(--space-2);
+    gap: var(--space-3);
   }
 
+  /* Fix: explicit text-decoration:none prevents any inherited underline on labels */
   .form-label {
     font-family: var(--font-sans);
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     font-weight: 600;
     color: var(--charcoal);
-    letter-spacing: 0.03em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
+    text-decoration: none;
+    display: block;
+    border: none;
   }
 
   .form-label span.required {
     color: var(--amber);
     margin-left: 2px;
+    text-decoration: none;
   }
 
+  /* Inputs: consistent warm ivory surface, no banding */
   .form-input,
   .form-select,
   .form-textarea {
     width: 100%;
     padding: 0.9375rem 1rem;
-    background: #ffffff;
-    border: 1px solid rgba(43, 33, 28, 0.18);
+    background: #faf8f4; /* uniform warm ivory */
+    border: 1px solid rgba(43, 33, 22, 0.14); /* subtle, not boxy */
     border-radius: var(--border-radius-sm);
     font-family: var(--font-sans);
     font-size: 1rem;
@@ -209,6 +240,7 @@ heroImage: /assets/img/hotel/chatgpt-image-sep-29,-2026,-08_59_28-am.webp
     box-sizing: border-box;
     appearance: none;
     -webkit-appearance: none;
+    box-shadow: none; /* no shadow by default */
   }
 
   .form-input::placeholder,
@@ -228,6 +260,7 @@ heroImage: /assets/img/hotel/chatgpt-image-sep-29,-2026,-08_59_28-am.webp
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23D9A441' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 1rem center;
+    background-color: #faf8f4;
     padding-right: 2.5rem;
     cursor: pointer;
   }
@@ -246,12 +279,12 @@ heroImage: /assets/img/hotel/chatgpt-image-sep-29,-2026,-08_59_28-am.webp
     border: none;
     border-radius: var(--border-radius-sm);
     font-family: var(--font-sans);
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
     font-weight: 700;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     cursor: pointer;
-    transition: background 0.25s ease, transform 0.25s ease;
+    transition: background 0.25s ease, transform 0.2s ease;
     margin-top: var(--space-6);
   }
 
@@ -288,7 +321,7 @@ heroImage: /assets/img/hotel/chatgpt-image-sep-29,-2026,-08_59_28-am.webp
     {# ─── Contact Details Sidebar ─── #}
     <aside class="contact-details">
       <div class="contact-bg-wrap">
-        <img class="contact-bg-img" src="{{ heroImage }}" alt="Hotel exterior" loading="lazy">
+        <img class="contact-bg-img" src="{{ heroImage }}" alt="" role="presentation" loading="lazy" style="opacity:0.3;">
         <div class="contact-bg-overlay"></div>
       </div>
 
@@ -297,7 +330,7 @@ heroImage: /assets/img/hotel/chatgpt-image-sep-29,-2026,-08_59_28-am.webp
 
         <div class="contact-detail-item">
           <span class="contact-detail-label">Address</span>
-          <span class="contact-detail-value">Eastern Bypass, Ruiru-Kamakis, Kenya</span>
+          <span class="contact-detail-value">Eastern Bypass,<br>Ruiru-Kamakis, Kenya</span>
         </div>
 
         {% if site.phone and site.phone != "CONTENT REQUIRED" %}
