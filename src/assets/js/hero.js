@@ -11,8 +11,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let currentIndex = 0;
   let autoplayTimer = null;
-  const AUTOPLAY_INTERVAL = 6000;
+  const AUTOPLAY_INTERVAL = 8000;
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function resetKenBurns(slide) {
+    const imgs = slide.querySelectorAll('img');
+    imgs.forEach(img => {
+      // Force animation restart by briefly clearing the animation name
+      img.style.animationName = 'none';
+      // Reflow to flush the style change
+      void img.offsetHeight;
+      img.style.animationName = '';
+    });
+  }
 
   function showSlide(index) {
     slides[currentIndex].classList.remove('is-active');
@@ -23,12 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     currentIndex = (index + slides.length) % slides.length;
 
+    resetKenBurns(slides[currentIndex]);
     slides[currentIndex].classList.add('is-active');
     if (dots[currentIndex]) {
       dots[currentIndex].classList.add('is-active');
       dots[currentIndex].setAttribute('aria-selected', 'true');
     }
   }
+
 
   function nextSlide() {
     showSlide(currentIndex + 1);

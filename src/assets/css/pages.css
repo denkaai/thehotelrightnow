@@ -35,6 +35,29 @@
   overflow: hidden;
 }
 
+/* ─── Ken Burns keyframes — cinematic luxury motion ─── */
+/*
+   Design intent: a clearly felt, slow camera push — the kind you
+   see in five-star hotel commercials and luxury brand films.
+   Scale: 1.06 → 1.15 (8% travel, reads as a real dolly push).
+   Drift: 1.5–2% (gentle parallax depth, not jitter).
+   Each motion is directionally unique so the slideshow feels
+   like a multi-angle film, not a looping CSS trick.
+*/
+@keyframes kb-push-left {
+  0%   { transform: scale(1.06) translate(0%,    0%  ); }
+  100% { transform: scale(1.15) translate(-2%,  -1% ); }
+}
+@keyframes kb-drift-right {
+  0%   { transform: scale(1.06) translate(0%,   0%  ); }
+  100% { transform: scale(1.15) translate(1.5%, -1% ); }
+}
+@keyframes kb-pull-center {
+  /* Slow pull-back with a subtle upward float — serene, wide reveal */
+  0%   { transform: scale(1.13) translate(0%,  0.8%); }
+  100% { transform: scale(1.06) translate(0%,  0%  ); }
+}
+
 .hero-slide {
   position: absolute;
   inset: 0;
@@ -58,8 +81,42 @@
   object-fit: cover;
   object-position: center;
   display: block;
-  /* Subtle parallax target — JS will apply transform */
+  /* Start zoomed in — travel budget of 9% keeps all edges safely hidden */
+  transform: scale(1.06);
+  transform-origin: center center;
   will-change: transform;
+  /* 16 s: long enough for the motion to read as a camera move, not a CSS trick */
+  animation-duration: 16s;
+  /* Near-linear with a short ease-in: mimics a camera operator on a gimbal —
+     deliberate constant pace after the first beat, no rubber-band deceleration */
+  animation-timing-function: cubic-bezier(0.1, 0, 0.25, 1);
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+}
+
+/* Assign a different motion to each slide */
+.hero-slide:nth-child(1) img,
+.hero-slide:nth-child(1) picture img { animation-name: kb-push-left; }
+
+.hero-slide:nth-child(2) img,
+.hero-slide:nth-child(2) picture img { animation-name: kb-drift-right; }
+
+.hero-slide:nth-child(3) img,
+.hero-slide:nth-child(3) picture img { animation-name: kb-pull-center; }
+
+/* Play the animation only while the slide is active */
+.hero-slide.is-active img,
+.hero-slide.is-active picture img {
+  animation-play-state: running;
+}
+
+/* Respect reduced-motion — freeze Ken Burns entirely */
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide img,
+  .hero-slide picture img {
+    transform: scale(1) !important;
+    animation: none !important;
+  }
 }
 
 /* ─── Overlay: bottom-heavy so sky stays open ─── */

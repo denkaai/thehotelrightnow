@@ -44,49 +44,14 @@
 
   /* ─────────────────────────────────────────────
      2. HERO PARALLAX
-     Very subtle: at full scroll-past the hero the image
-     moves ~12% — almost imperceptible, cinematic.
-     Disabled on mobile (touch scroll already feels alive)
-     and when prefers-reduced-motion is set.
+     Disabled: Ken Burns CSS animation now owns the
+     transform on .hero-slide img elements.
+     The cinematic zoom/drift replaces parallax.
   ───────────────────────────────────────────── */
   function initHeroParallax() {
-    if (prefersReduced) return;
-
-    // Disable on touch devices / small screens
-    const isMobile = window.matchMedia('(max-width: 767px)').matches;
-    if (isMobile) return;
-
-    const heroSection = document.getElementById('hero');
-    if (!heroSection) return;
-
-    const imgs = heroSection.querySelectorAll('.hero-slide img');
-    if (!imgs.length) return;
-
-    let ticking = false;
-
-    function applyParallax() {
-      const heroH = heroSection.offsetHeight;
-      const scrollY = window.scrollY;
-      // Only apply while hero is in view
-      if (scrollY > heroH) return;
-
-      // Move image 5% of the scroll distance (cinematic & subtle)
-      const offset = scrollY * 0.05;
-      imgs.forEach(img => {
-        img.style.transform = `translateY(${offset}px)`;
-      });
-    }
-
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          applyParallax();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }, { passive: true });
+    // No-op — Ken Burns effect in pages.css handles cinematic motion
   }
+
 
   /* ─────────────────────────────────────────────
      3. ACTIVE NAV LINK
