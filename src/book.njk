@@ -47,7 +47,7 @@ description: Plan your stay at Hotel Right Now.
                   <option value="Any available room">Any available room</option>
                   {% for room in rooms.rooms %}
                     {% set roomName = room.name %}
-                    {% if roomName == "CONTENT REQUIRED" %}{% set roomName = "Signature Suite " ~ loop.index %}{% endif %}
+                    {% if roomName == "CONTENT REQUIRED" %}{% set roomName = "Room " ~ loop.index %}{% endif %}
                     <option value="{{ roomName }}">{{ roomName }}</option>
                   {% endfor %}
                 </select>

@@ -1,0 +1,67 @@
+diff --git a/src/_data/events.json b/src/_data/events.json
+index aaedce9..4c2201e 100644
+--- a/src/_data/events.json
++++ b/src/_data/events.json
+@@ -10,7 +10,7 @@
+       "height": 900
+     },
+     {
+-      "src": "/assets/img/events/chatgpt-image-sep-29,-2026,-08_59_28-am.webp",
++      "src": "/assets/img/events/events.webp",
+       "alt": "Event space with glowing lights and decor",
+       "width": 1536,
+       "height": 1024
+diff --git a/src/_data/hotel.json b/src/_data/hotel.json
+index db430a8..6c5a2b9 100644
+--- a/src/_data/hotel.json
++++ b/src/_data/hotel.json
+@@ -1,7 +1,7 @@
+ {
+   "images": [
+     {
+-      "src": "/assets/img/hotel/chatgpt-image-sep-29,-2026,-08_59_28-am.webp",
++      "src": "/assets/img/hotel/clear.webp",
+       "alt": "Hotel exterior view featuring glowing lights",
+       "width": 1536,
+       "height": 1024
+diff --git a/src/book.njk b/src/book.njk
+index e8de871..dd96994 100644
+--- a/src/book.njk
++++ b/src/book.njk
+@@ -47,7 +47,7 @@ description: Plan your stay at Hotel Right Now.
+                   <option value="Any available room">Any available room</option>
+                   {% for room in rooms.rooms %}
+                     {% set roomName = room.name %}
+-                    {% if roomName == "CONTENT REQUIRED" %}{% set roomName = "Signature Suite " ~ loop.index %}{% endif %}
++                    {% if roomName == "CONTENT REQUIRED" %}{% set roomName = "Room " ~ loop.index %}{% endif %}
+                     <option value="{{ roomName }}">{{ roomName }}</option>
+                   {% endfor %}
+                 </select>
+diff --git a/src/contact.njk b/src/contact.njk
+index 0dbafb1..4c036f3 100644
+--- a/src/contact.njk
++++ b/src/contact.njk
+@@ -3,7 +3,7 @@ layout: layouts/base.njk
+ title: Contact & Enquiries — thehotelrightnow
+ eyebrow: Get in Touch
+ description: Reach out to plan your stay, dining reservation, or private event.
+-heroImage: /assets/img/hotel/chatgpt-image-sep-29,-2026,-08_59_28-am.webp
++heroImage: /assets/img/hotel/clear.webp
+ ---
+ 
+ {% include "components/page-hero.njk" %}
+diff --git a/src/index.njk b/src/index.njk
+index af7421b..3810279 100644
+--- a/src/index.njk
++++ b/src/index.njk
+@@ -206,8 +206,8 @@ title: thehotelrightnow — Architectural Hospitality & Retreat
+             <img src="{{ room.src }}" alt="{{ room.alt }}" loading="lazy">
+           </div>
+           <div class="room-card-content">
+-            <h3 class="room-card-title">{{ room.name if room.name != "CONTENT REQUIRED" else "Signature Suite" }}</h3>
+-            <p class="room-card-description">{{ room.description if room.description != "CONTENT REQUIRED" else "Experience ultimate comfort in our thoughtfully designed spaces." }}</p>
++            <h3 class="room-card-title">{{ room.name if room.name != "CONTENT REQUIRED" else "Room " ~ loop.index }}</h3>
++            <p class="room-card-description">{{ room.description if room.description != "CONTENT REQUIRED" else "Details coming soon" }}</p>
+             <div class="room-card-footer">
+               <a href="/rooms/" class="btn btn-outline">Explore Room</a>
+             </div>

@@ -206,8 +206,8 @@ title: thehotelrightnow — Architectural Hospitality & Retreat
             <img src="{{ room.src }}" alt="{{ room.alt }}" loading="lazy">
           </div>
           <div class="room-card-content">
-            <h3 class="room-card-title">{{ room.name if room.name != "CONTENT REQUIRED" else "Signature Suite" }}</h3>
-            <p class="room-card-description">{{ room.description if room.description != "CONTENT REQUIRED" else "Experience ultimate comfort in our thoughtfully designed spaces." }}</p>
+            <h3 class="room-card-title">{{ room.name if room.name != "CONTENT REQUIRED" else "Room " ~ loop.index }}</h3>
+            <p class="room-card-description">{{ room.description if room.description != "CONTENT REQUIRED" else "Details coming soon" }}</p>
             <div class="room-card-footer">
               <a href="/rooms/" class="btn btn-outline">Explore Room</a>
             </div>
