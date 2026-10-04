@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let currentIndex = 0;
   let autoplayTimer = null;
-  const AUTOPLAY_INTERVAL = 8000;
+  const AUTOPLAY_INTERVAL = 6000;
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function resetKenBurns(slide) {

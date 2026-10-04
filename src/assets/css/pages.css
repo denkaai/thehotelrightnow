@@ -86,7 +86,7 @@
   transform-origin: center center;
   will-change: transform;
   /* 16 s: long enough for the motion to read as a camera move, not a CSS trick */
-  animation-duration: 16s;
+  animation-duration: 9s;
   /* Near-linear with a short ease-in: mimics a camera operator on a gimbal —
      deliberate constant pace after the first beat, no rubber-band deceleration */
   animation-timing-function: cubic-bezier(0.1, 0, 0.25, 1);
