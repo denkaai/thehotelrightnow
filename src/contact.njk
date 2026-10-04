@@ -299,6 +299,87 @@ heroImage: /assets/img/hotel/clear.webp
     outline-offset: 4px;
   }
 
+  /* ─── Location map section ─── */
+  .contact-left-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .contact-map-section {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: contactMapFadeIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards;
+  }
+
+  .contact-map-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--amber);
+    font-weight: 600;
+    margin-bottom: var(--space-3);
+  }
+
+  .contact-map-frame {
+    border: 1px solid var(--stone);
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  .contact-map-frame iframe {
+    width: 100%;
+    height: 400px;
+    display: block;
+    border: 0;
+  }
+
+  .contact-map-directions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    margin-top: var(--space-4);
+    padding: 0.875rem 1.75rem;
+    background: transparent;
+    color: var(--ivory);
+    border: 1px solid var(--stone);
+    border-radius: var(--border-radius-sm);
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  }
+
+  .contact-map-directions:hover,
+  .contact-map-directions:focus-visible {
+    background: var(--amber);
+    border-color: var(--amber);
+    color: var(--ivory);
+  }
+
+  .contact-map-directions:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 4px;
+  }
+
+  @media (max-width: 899px) {
+    .contact-map-frame iframe {
+      height: 300px;
+    }
+  }
+
+  @keyframes contactMapFadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   @keyframes contactFadeIn {
     to {
       opacity: 1;
@@ -307,7 +388,7 @@ heroImage: /assets/img/hotel/clear.webp
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .contact-details, .contact-form-card {
+    .contact-details, .contact-form-card, .contact-map-section {
       opacity: 1 !important;
       transform: none !important;
       animation: none !important;
@@ -318,49 +399,77 @@ heroImage: /assets/img/hotel/clear.webp
 <section class="contact-section" id="enquiry">
   <div class="contact-layout">
 
-    {# ─── Contact Details Sidebar ─── #}
-    <aside class="contact-details">
-      <div class="contact-bg-wrap">
-        <img class="contact-bg-img" src="{{ heroImage }}" alt="" role="presentation" loading="lazy" style="opacity:0.3;">
-        <div class="contact-bg-overlay"></div>
+    {# ─── Left Column: Contact Details + Map ─── #}
+    <div class="contact-left-col">
+
+      {# ─── Contact Details Sidebar ─── #}
+      <aside class="contact-details">
+        <div class="contact-bg-wrap">
+          <img class="contact-bg-img" src="{{ heroImage }}" alt="" role="presentation" loading="lazy" style="opacity:0.3;">
+          <div class="contact-bg-overlay"></div>
+        </div>
+
+        <div class="contact-details-content">
+          <h2 class="contact-details-heading">Hotel Right Now</h2>
+
+          <div class="contact-detail-item">
+            <span class="contact-detail-label">Address</span>
+            <span class="contact-detail-value">Eastern Bypass,<br>Ruiru-Kamakis, Kenya</span>
+          </div>
+
+          {% if site.phone and site.phone != "CONTENT REQUIRED" %}
+          <div class="contact-detail-item">
+            <span class="contact-detail-label">Phone</span>
+            <span class="contact-detail-value">
+              <a href="tel:{{ site.phone | replace(' ', '') }}">{{ site.phone }}</a>
+            </span>
+          </div>
+          {% endif %}
+
+          {% if site.whatsapp and site.whatsapp != "CONTENT REQUIRED" %}
+          <div class="contact-detail-item">
+            <span class="contact-detail-label">WhatsApp</span>
+            <span class="contact-detail-value">
+              <a href="https://wa.me/{{ site.whatsapp | replace('+', '') | replace(' ', '') }}" target="_blank" rel="noopener noreferrer">{{ site.whatsapp }}</a>
+            </span>
+          </div>
+          {% endif %}
+
+          {% if site.email and site.email != "CONTENT REQUIRED" %}
+          <div class="contact-detail-item">
+            <span class="contact-detail-label">Email</span>
+            <span class="contact-detail-value">
+              <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+            </span>
+          </div>
+          {% endif %}
+        </div>
+      </aside>
+
+      {# ─── Location Map ─── #}
+      <div class="contact-map-section">
+        <p class="contact-map-label">Location</p>
+        <div class="contact-map-frame">
+          <iframe
+            src="{{ site.mapEmbedUrl }}"
+            width="100%"
+            height="400"
+            style="border:0;"
+            loading="lazy"
+            title="thehotelrightnow location map"
+            allowfullscreen=""
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <a
+          href="{{ site.mapsUrl }}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="contact-map-directions">
+          Get Directions
+        </a>
       </div>
 
-      <div class="contact-details-content">
-        <h2 class="contact-details-heading">Hotel Right Now</h2>
-
-        <div class="contact-detail-item">
-          <span class="contact-detail-label">Address</span>
-          <span class="contact-detail-value">Eastern Bypass,<br>Ruiru-Kamakis, Kenya</span>
-        </div>
-
-        {% if site.phone and site.phone != "CONTENT REQUIRED" %}
-        <div class="contact-detail-item">
-          <span class="contact-detail-label">Phone</span>
-          <span class="contact-detail-value">
-            <a href="tel:{{ site.phone | replace(' ', '') }}">{{ site.phone }}</a>
-          </span>
-        </div>
-        {% endif %}
-
-        {% if site.whatsapp and site.whatsapp != "CONTENT REQUIRED" %}
-        <div class="contact-detail-item">
-          <span class="contact-detail-label">WhatsApp</span>
-          <span class="contact-detail-value">
-            <a href="https://wa.me/{{ site.whatsapp | replace('+', '') | replace(' ', '') }}" target="_blank" rel="noopener noreferrer">{{ site.whatsapp }}</a>
-          </span>
-        </div>
-        {% endif %}
-
-        {% if site.email and site.email != "CONTENT REQUIRED" %}
-        <div class="contact-detail-item">
-          <span class="contact-detail-label">Email</span>
-          <span class="contact-detail-value">
-            <a href="mailto:{{ site.email }}">{{ site.email }}</a>
-          </span>
-        </div>
-        {% endif %}
-      </div>
-    </aside>
+    </div>{# /.contact-left-col #}
 
     {# ─── Enquiry Form ─── #}
     <div class="contact-form-card">

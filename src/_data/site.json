@@ -9,7 +9,8 @@
   "email": "hello@thehotelrightnow.com",
   "address": "Eastern Bypass, Ruiru-Kamakis, Kenya",
   "bookingUrl": "https://booking.thehotelrightnow.com",
-  "mapsUrl": "https://maps.google.com/?q=thehotelrightnow",
+  "mapsUrl": "https://www.google.com/maps/dir/?api=1&destination=-1.1818018,36.9871858",
+  "mapEmbedUrl": "https://www.google.com/maps?q=-1.1818018,36.9871858&output=embed",
   "socials": {
     "facebook": "TBD",
     "instagram": "TBD",
